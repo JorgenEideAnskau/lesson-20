@@ -8,11 +8,15 @@ import Protected from "./pages/Protected";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-
+import AuthContect from "./contexts/AuthContext";
+import { useState } from "react";
 
 function App() {
+
+  const [auth, setAuth] = useState(false);
+
   return (
-    <>
+    <AuthContect.Provider value={[auth, setAuth]} >
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +25,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </AuthContect.Provider>
   );
 }
 
